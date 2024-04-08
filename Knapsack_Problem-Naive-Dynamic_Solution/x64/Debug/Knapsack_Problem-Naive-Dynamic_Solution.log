@@ -1,0 +1,3 @@
+﻿  Solutions.cpp
+C:\Users\amitk\source\repos\Knapsack_Problem-Naive-Dynamic_Solution\Knapsack_Problem-Naive-Dynamic_Solution\Solutions.cpp(24,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Knapsack_Problem-Naive-Dynamic_Solution.vcxproj -> C:\Users\amitk\source\repos\Knapsack_Problem-Naive-Dynamic_Solution\x64\Debug\Knapsack_Problem-Naive-Dynamic_Solution.exe
