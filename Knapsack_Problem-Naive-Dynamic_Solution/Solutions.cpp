@@ -4,7 +4,6 @@
 #include <ctime>   // for time()
 #include <chrono>
 
-
 using namespace std;
 
 int KnapsackProblemNaive(const vector<int>& Weights, const vector<int>& Prices, int Index, int WeightLimit,
@@ -19,34 +18,28 @@ int KnapsackProblemNaive(const vector<int>& Weights, const vector<int>& Prices, 
 	int LeftTurn = KnapsackProblemNaive(Weights, Prices, Index + 1, WeightLimit, WeightCap, Value);
 
 	return max(RightTurn, LeftTurn);
-
 }
-
 
 int KnapsackProblemDynamic(const vector<int>& Weights, const vector<int>& prices, int Weightlimit)
 {
 	//Based on Wiki code
 
 	int num_items = prices.size();
-
 	vector<int> row(Weightlimit + 1, 0);
 	vector<vector<int>> M(num_items + 1, row);
-
 
 	for (int i = 1; i <= num_items; ++i) {
 		for (int j = 1; j <= Weightlimit; ++j) {
 
 			if (Weights[i - 1] > j) 
 				M[i][j] = M[i - 1][j];
-			
 			else 
 				M[i][j] = max(M[i - 1][j], prices[i - 1] + M[i - 1][j - Weights[i - 1]]);
-		
 		}
 	}
 	return M[num_items][Weightlimit];
-
 }
+
 vector<int> initializeVector(int size, int minValue, int maxValue) {
 	vector<int> result(size);
 	for (int i = 0; i < size; ++i) {
@@ -68,7 +61,6 @@ int main()
 	vector<int> prices = initializeVector(size, minValue, maxValue);
 	vector<int>  weights = initializeVector(size, minValue, maxValue);
 
-
 	//// Display the initialized vector
 	//cout << "Initialized vector: ";
 	//for (int i = 0; i < size; ++i) {
@@ -82,30 +74,21 @@ int main()
 
 	//Naive solution
 	auto start = std::chrono::high_resolution_clock::now();
-
 	int solution = KnapsackProblemNaive(weights, prices, 0, weightlimit, 0, 0);
-
 	auto end = std::chrono::high_resolution_clock::now();
 	cout << "The naive solution of Knapsack Problem is: " << solution << endl;
-
 	std::chrono::duration<double> duration = end - start;
-
 	cout << "The  running time is: " << duration.count() << " seconds" << std::endl;
 
 	//Dynamic solution
 	start = std::chrono::high_resolution_clock::now();
-	
 	solution = KnapsackProblemDynamic(weights, prices, weightlimit);
 	end = std::chrono::high_resolution_clock::now();
-	
 	cout << "The dynamic solution of Knapsack Problem is: " << solution << endl;
 	duration = end - start;
-
 	cout << "The  running time is: " << duration.count() << " seconds" << std::endl;
 
 	return 0;
-
-
 }
 
 
